@@ -19,9 +19,9 @@ class Match(Base):
     __tablename__ = "matches"
     
     id = Column(Integer, primary_key=True, index=True)
-    team_a = Column(ForeignKey("teams.id"), nullable=False)
-    team_b = Column(ForeignKey("teams.id"), nullable=False)
+    team_a = Column(Integer, ForeignKey("teams.id"), nullable=False)
+    team_b = Column(Integer, ForeignKey("teams.id"), nullable=False)
     score_team_a = Column(Integer)
     score_team_b = Column(Integer)
     phase = Column(String(100), nullable=False)
-    updated_by = Column(ForeignKey("users.id"))
+    updated_by = Column(Integer, ForeignKey("users.id"))
