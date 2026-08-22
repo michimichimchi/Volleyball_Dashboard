@@ -24,4 +24,5 @@ class Match(Base):
     score_team_a = Column(Integer)
     score_team_b = Column(Integer)
     phase = Column(String(100), nullable=False)
+    field = Column(String(50))
     updated_by = Column(Integer, ForeignKey("users.id"))

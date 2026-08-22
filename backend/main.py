@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 #from schemas import
 from db_engine import Base, engine, get_db, SessionLocal
 from seed_db import seed_data
-import models
+from models import User, Team, Match
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
