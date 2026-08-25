@@ -4,13 +4,11 @@ from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL, connect_args={"charset": "utf8mb4"}, echo=True)
 SessionLocal = sessionmaker(bind=engine)
-
 
 class Base(DeclarativeBase):
     pass
-
 
 def get_db():
     """Dependency: liefert eine DB-Session und schließt sie danach."""

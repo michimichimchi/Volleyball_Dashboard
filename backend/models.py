@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from db_engine import Base
 
 class Team(Base):
@@ -24,5 +24,6 @@ class Match(Base):
     score_team_a = Column(Integer)
     score_team_b = Column(Integer)
     phase = Column(String(100), nullable=False)
-    field = Column(String(50))
+    field = Column(Integer)
+    time = Column(DateTime)
     updated_by = Column(Integer, ForeignKey("users.id"))
