@@ -9,6 +9,7 @@ from seed_db import seed_data
 from models import User, Team, Match
 import time
 from sqlalchemy.exc import OperationalError
+import traceback
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -27,6 +28,10 @@ async def lifespan(app: FastAPI):
             print(f"database not ready, retry {retries} more times")
             retries -= 1
             time.sleep(3)
+        except Exception as e:
+            print("=== Kbackend error ===", flush=True)
+            traceback.print_exc()
+            break
     yield
 
 # create fastapi instance

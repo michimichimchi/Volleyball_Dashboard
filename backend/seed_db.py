@@ -3,15 +3,16 @@ from models import User, Team, Match
 from db_engine import SessionLocal, engine
 import pandas as pd
 import random
+from auth import get_password_hash
 
 def seed_data():
     session = SessionLocal()
     try:
         if not session.query(User).first():
             # seed users
-            admin_pwd = os.getenv("ADMIN_PASSWORD", "StandardFallback123!")
-            feld1_pwd = os.getenv("FELD1_PASSWORD", "StandardFallback123!")
-            feld2_pwd = os.getenv("FELD2_PASSWORD", "StandardFallback123!")
+            admin_pwd = get_password_hash(os.getenv("ADMIN_PASSWORD"))
+            feld1_pwd = get_password_hash(os.getenv("FELD1_PASSWORD"))
+            feld2_pwd = get_password_hash(os.getenv("FELD2_PASSWORD"))
             
             df_users = pd.DataFrame({"username": ["admin", "feld1", "feld2"],
                                      "password": [admin_pwd, feld1_pwd, feld2_pwd],
